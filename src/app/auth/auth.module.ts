@@ -4,18 +4,15 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
-
-
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     SignInComponent,
     SignUpComponent,
     ForgotPasswordComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
   ],
-  imports: [
-    CommonModule
-  ]
+  imports: [CommonModule, RouterModule],
 })
-export class AuthModule { }
+export class AuthModule {}

@@ -1,1 +1,28 @@
-<p>sign-up works!</p>
+<h1>sign up</h1>
+
+<div class="form-group">
+  <input class="form-control" #userEmail required />
+</div>
+
+<div class="form-group">
+  <input type="password" class="form-control" #password required />
+</div>
+
+<div class="form-group">
+  <button
+    class="btn btn-primary"
+    (click)="authService.signUp(userEmail.value, password.value)"
+  >
+    <i class="fab fe-google-plus-g"></i>
+    Sign Up
+  </button>
+</div>
+<div class="form-group">
+  <button class="btn btn-primary" (click)="authService.googleAuth()">
+    <i class="fab fe-google-plus-g"></i>
+    sign up with google
+  </button>
+</div>
+<div class="redirect-to-login">
+  <span class="redirect" routerLink="/sign-in"></span>
+</div>
