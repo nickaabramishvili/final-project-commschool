@@ -38,6 +38,11 @@ export class AuthService {
       });
   }
 
+  get isLoggedIn(): boolean {
+    const user = JSON.parse(localStorage.getItem('user') as string);
+    return user !== null ? true : false;
+  }
+
   signUp(email: string, password: string) {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)

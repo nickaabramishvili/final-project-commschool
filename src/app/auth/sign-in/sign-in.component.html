@@ -1,27 +1,43 @@
-<h1>sign in</h1>
-<div class="form-group">
-  <input class="form-control" #userName required />
-  <input type="password" class="form-control" #password required />
-</div>
+<div class="container mx-auto py-3">
+  <h1 class="pb-3">Sign in</h1>
+  <form [formGroup]="addCustomerForm">
+    <div class="form-floating mb-3">
+      <input
+        type="email"
+        class="form-control"
+        id="userEmail"
+        placeholder="name@example.com"
+        formControlName="email"
+      />
+      <label for="userEmail">Email address</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        type="email"
+        class="form-control"
+        id="userPassword"
+        placeholder="name@example.com"
+        formControlName="password"
+      />
+      <label for="userPassword">Password</label>
+    </div>
+    <button class="btn btn-success px-3 py-2" (click)="signInUser()">
+      Sign In
+    </button>
+  </form>
 
-<button
-  class="btn btn-primary"
-  (click)="authService.signIn(userName.value, password.value)"
->
-  sign In
-</button>
+  <div class="form-group">
+    <button class="btn googleBtn" (click)="authService.googleAuth()">
+      <i class="fab fe-google-plus-g"></i>
+      logi nwith google
+    </button>
+  </div>
 
-<div class="form-group">
-  <button class="btn googleBtn" (click)="authService.googleAuth()">
-    <i class="fab fe-google-plus-g"></i>
-    logi nwith google
-  </button>
-</div>
+  <div class="forgot-password">
+    <span routerLink="/forgot-password">Forgot Password</span>
+  </div>
 
-<div class="forgot-password">
-  <span routerLink="/forgot-password">Forgot Password</span>
-</div>
-
-<div class="redirectoLogin">
-  <span routerLink="/sign-up">sign Up</span>
+  <div class="redirectoLogin">
+    <span routerLink="/sign-up">sign Up</span>
+  </div>
 </div>
