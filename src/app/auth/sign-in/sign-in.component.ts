@@ -8,9 +8,10 @@ import { customerPasswordStrength } from '../validators/user-password.validator'
   styleUrls: ['./sign-in.component.scss'],
 })
 export class SignInComponent {
-  addCustomerForm: FormGroup;
+  signInUserForm: FormGroup;
+  isSubmited: boolean = false;
   constructor(public authService: AuthService) {
-    this.addCustomerForm = new FormGroup({
+    this.signInUserForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [
         Validators.required,
@@ -20,11 +21,19 @@ export class SignInComponent {
   }
 
   signInUser() {
-    if (this.addCustomerForm.valid) {
+    this.isSubmited = true;
+    if (this.signInUserForm.valid) {
       this.authService.signIn(
-        this.addCustomerForm.value.email,
-        this.addCustomerForm.value.password
+        this.signInUserForm.value.email,
+        this.signInUserForm.value.password
       );
     }
+    // ar gadadioda pirvel klikze da es ro mdavmate titqos firebase azzrze movida ratomgac
+    console.log(
+      this.authService.signIn(
+        this.signInUserForm.value.email,
+        this.signInUserForm.value.password
+      )
+    );
   }
 }

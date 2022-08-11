@@ -1,2 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/scss/bootstrap.scss";
+// forms
+.form-control.ng-dirty.ng-invalid,
+.form-control.ng-invalid.ng-touched {
+  border-color: #f11a5e;
+}
