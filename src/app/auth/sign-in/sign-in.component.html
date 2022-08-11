@@ -1,1 +1,27 @@
-<p>sign-in works!</p>
+<h1>sign in</h1>
+<div class="form-group">
+  <input class="form-control" #userName required />
+  <input type="password" class="form-control" #password required />
+</div>
+
+<button
+  class="btn btn-primary"
+  (click)="authService.signIn(userName.value, password.value)"
+>
+  sign In
+</button>
+
+<div class="form-group">
+  <button class="btn googleBtn" (click)="authService.googleAuth()">
+    <i class="fab fe-google-plus-g"></i>
+    logi nwith google
+  </button>
+</div>
+
+<div class="forgot-password">
+  <span routerLink="/forgot-password">Forgot Password</span>
+</div>
+
+<div class="redirectoLogin">
+  <span routerLink="/register-user">sign Up</span>
+</div>
