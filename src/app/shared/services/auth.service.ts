@@ -34,7 +34,7 @@ export class AuthService {
         this.setUserData(result.user);
       })
       .catch((error) => {
-        window.alert(error.message);
+        console.log(error.message);
       });
   }
 
@@ -51,7 +51,7 @@ export class AuthService {
         this.setUserData(result.user);
       })
       .catch((error) => {
-        window.alert(error.message);
+        console.log(error.message);
       });
   }
 
@@ -69,10 +69,10 @@ export class AuthService {
     return this.afAuth
       .sendPasswordResetEmail(passResetEmail)
       .then(() => {
-        window.alert('email was sent');
+        console.log('email was sent');
       })
       .catch((error) => {
-        window.alert(error);
+        console.log(error);
       });
   }
 
@@ -92,7 +92,7 @@ export class AuthService {
         this.setUserData(result.user);
       })
       .catch((error) => {
-        window.alert(error.message);
+        console.log(error.message);
       });
   }
 

@@ -7,7 +7,10 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  constructor(public authService: AuthService) {}
+  userName: any = '';
+  constructor(public authService: AuthService) {
+    this.userName = localStorage.getItem('user');
+  }
 
   ngOnInit(): void {}
 }
