@@ -1,7 +1,3 @@
-<div class="redirect-to-login">
-  <span class="redirect" routerLink="/sign-in"></span>
-</div>
-
 <div class="container mx-auto py-3">
   <h1 class="pb-3">Sign Up</h1>
   <form [formGroup]="signUpUserForm" (ngSubmit)="signUpUser()">
@@ -70,4 +66,5 @@
       </svg>
     </button>
   </div>
+  <div class="btn" routerLink="/sign-in">Back To Sign In</div>
 </div>
