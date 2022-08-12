@@ -1,1 +1,95 @@
-<p>review works!</p>
+<div class="container">
+  <ng-container *ngIf="saved$ | async"> Saved </ng-container>
+  <div
+    class="container d-flex justify-content-between py-3"
+    style="width: 400px"
+  >
+    <ng-select
+      style="width: 100%"
+      [(ngModel)]="selectedBook"
+      [items]="items"
+      [typeahead]="typeahead$"
+      [disabled]="(saved$ | async)!"
+      [loading]="(selectLoading$ | async)!"
+      (clear)="selectCleared()"
+      (scrollToEnd)="scrollEnd()"
+      [virtualScroll]="true"
+      bindLabel="title"
+    >
+    </ng-select>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <img [src]="selectedBook?.thumbnail" />
+
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="userPassword"
+        [value]="selectedBook?.title"
+        disabled
+        placeholder="text"
+      />
+      <label for="userPassword">text</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="userPassword"
+        [value]="selectedBook?.authors | arrayToString"
+        disabled
+        placeholder="text"
+      />
+      <label for="userPassword">text</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="userPassword"
+        [value]="selectedBook?.description"
+        disabled
+        placeholder="text"
+      />
+      <label for="userPassword">text</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        disabled
+        id="userPassword"
+        [value]="selectedBook?.publishedDate"
+        placeholder="text"
+      />
+      <label for="userPassword">text</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input
+        type="number"
+        class="form-control"
+        id="userEmail"
+        placeholder="text"
+        formControlName="rate"
+      />
+      <label for="userEmail">id</label>
+    </div>
+    <div class="form-floating mb-3">
+      <textarea
+        class="form-control"
+        placeholder="Leave a comment here"
+        formControlName="review"
+        id="floatingTextarea2"
+        style="height: 100px"
+      ></textarea>
+      <label for="floatingTextarea2">Comments</label>
+    </div>
+
+    <button [disabled]="saved$ | async" class="btn btn-success px-3 py-2">
+      Save
+    </button>
+  </form>
+</div>

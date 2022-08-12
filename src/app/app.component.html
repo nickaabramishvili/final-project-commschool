@@ -30,9 +30,7 @@
                 <a routerLink="feature/dashboard" class="nav-link">Dashboard</a>
               </li>
               <li routerLinkActive="active" *ngIf="this.authService.isLoggedIn">
-                <a routerLink="feature/review" class="nav-link"
-                  >Review & Rate</a
-                >
+                <a routerLink="feature/add" class="nav-link">Review & Rate</a>
               </li>
               <li routerLinkActive="active" *ngIf="this.authService.isLoggedIn">
                 <a routerLink="feature/list" class="nav-link">Your List</a>
