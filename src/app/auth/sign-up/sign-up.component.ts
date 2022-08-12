@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { customerPasswordStrength } from '../validators/user-password.validator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -11,7 +12,7 @@ import { customerPasswordStrength } from '../validators/user-password.validator'
 export class SignUpComponent implements OnInit {
   signUpUserForm: FormGroup;
   isSubmited: boolean = false;
-  constructor(public authService: AuthService) {
+  constructor(public authService: AuthService, private router: Router) {
     this.signUpUserForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [
@@ -20,6 +21,7 @@ export class SignUpComponent implements OnInit {
       ]),
     });
   }
+  ngOnInit(): void {}
 
   signUpUser() {
     this.isSubmited = true;
@@ -37,5 +39,7 @@ export class SignUpComponent implements OnInit {
       )
     );
   }
-  ngOnInit(): void {}
+  navigateToSignIn() {
+    this.router.navigate(['auth', 'sign-in']);
+  }
 }

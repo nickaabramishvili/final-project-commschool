@@ -14,7 +14,7 @@ export class AppComponent {
     translateServ.setDefaultLang('en');
     translateServ.use('en');
   }
-  title = 'final-project-commschool';
+  title = 'Nika Abramishvili';
   onChangeLanguage() {
     console.log();
     if (this.translateServ.currentLang === 'en') {

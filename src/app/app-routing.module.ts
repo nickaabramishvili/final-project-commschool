@@ -4,20 +4,25 @@ import { SignInComponent } from './auth/sign-in/sign-in.component';
 
 import { DashboardComponent } from './feature/dashboard/dashboard.component';
 import { AuthGuard } from './shared/guards/auth.guard';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'auth/sign-in', pathMatch: 'full' },
+  {
+    path: '',
+    redirectTo: 'auth',
+    pathMatch: 'full',
+  },
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
-
   {
     path: 'dashboard',
     component: DashboardComponent,
     canActivate: [AuthGuard],
   },
-  { path: '**', component: SignInComponent },
+
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({

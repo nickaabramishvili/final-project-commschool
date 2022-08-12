@@ -4,7 +4,7 @@
       <div class="row align-items-center position-relative">
         <div class="col-4">
           <div class="site-logo">
-            <a routerLink="" class="font-weight-bold link">{{
+            <a routerLink="" class="font-weight-bold h5 text-decoration-none">{{
               title | translate
             }}</a>
           </div>
@@ -26,24 +26,28 @@
                 [routerLinkActiveOptions]="{ exact: true }"
                 *ngIf="!this.authService.isLoggedIn"
               >
-                <a routerLink="login" class="nav-link">login </a>
+                <a routerLink="auth/sign-in" class="nav-link">login </a>
+              </li>
+              <li
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                *ngIf="!this.authService.isLoggedIn"
+              >
+                <a routerLink="auth/sign-up" class="nav-link">Sign-up</a>
               </li>
               <li routerLinkActive="active" *ngIf="this.authService.isLoggedIn">
-                <a routerLink="customers" class="nav-link">dsada</a>
+                <a routerLink="customers" class="nav-link">Dashboard</a>
               </li>
-
+              <li routerLinkActive="active" *ngIf="this.authService.isLoggedIn">
+                <a routerLink="customers" class="nav-link">Review & Rate</a>
+              </li>
+              <li routerLinkActive="active" *ngIf="this.authService.isLoggedIn">
+                <a routerLink="customers" class="nav-link">Your List</a>
+              </li>
               <li routerLinkActive="active" *ngIf="this.authService.isLoggedIn">
                 <a routerLink="customers/active-customers" class="nav-link"
                   >Active-Customers</a
                 >
-              </li>
-              <li routerLinkActive="active" *ngIf="this.authService.isLoggedIn">
-                <a routerLink="customers/deleted-customers" class="nav-link"
-                  >Deleted-Customers</a
-                >
-              </li>
-              <li routerLinkActive="active" *ngIf="this.authService.isLoggedIn">
-                <a routerLink="posts" class="nav-link">Posts</a>
               </li>
             </ul>
           </nav>
