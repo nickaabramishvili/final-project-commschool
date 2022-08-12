@@ -1,21 +1,32 @@
-<div class="container d-flex justify-content-between py-3">
-  <button class="btn btn-green" [routerLink]="['../add']">dsda</button>
-</div>
-<div class="row" scrollListener (scrolledToBottom)="loadMore()">
-  <ng-container *ngFor="let item of userBooks; let i = index">
-    <div class="col-3">
-      <div class="card" style="width: 18rem">
-        <img
-          class="card-img-top"
-          [src]="item?.thumbnail"
-          alt="Card image cap"
-        />
-        <div class="card-body">
-          <h5 class="card-title">{{ item.title }}</h5>
-          <button class="btn btn-danger">DELETE faar unda</button>
+<div
+  class="container d-flex justify-content-between py-3 flex-column align-items-center"
+>
+  <div class="h5" *ngIf="!userBooks">Your List Is Empty Yet!</div>
+  <div class="d-flex w-100">
+    <div class="row" scrollListener (scrolledToBottom)="loadMore()">
+      <ng-container *ngFor="let item of userBooks; let i = index">
+        <div class="col-3 py-3 list-item-wrapper">
+          <div class="card">
+            <img
+              class="card-img-top"
+              [src]="item?.thumbnail"
+              alt="Card image cap"
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{ item.title }}</h5>
+              <button
+                class="btn btn-info text-white"
+                [routerLink]="['../details', item.key]"
+              >
+                Go to details
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
+      </ng-container>
     </div>
-    <br />
-  </ng-container>
+  </div>
+  <button class="btn btn-primary p-3" [routerLink]="['../add']">
+    Go to Review & Add
+  </button>
 </div>

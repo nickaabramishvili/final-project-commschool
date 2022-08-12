@@ -41,7 +41,7 @@ export class ReviewComponent implements OnInit {
 
   items: Book[] = [];
   selectedBook: Book | undefined = undefined;
-
+  lastSearchedKeywords: string[] = [];
   form: FormGroup = this.fb.group({
     rate: [0, Validators.required],
     review: ['', Validators.required],
@@ -54,6 +54,8 @@ export class ReviewComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    const savedKeywords = localStorage.getItem('searchedKeywords') || '[]';
+    this.lastSearchedKeywords = JSON.parse(savedKeywords);
     this.booksService.itemsRef?.stateChanges().subscribe((change) => {
       if (this.selectedBook && change.type === 'child_added') {
         this.saved$.next(true);
@@ -72,6 +74,7 @@ export class ReviewComponent implements OnInit {
           }
           this.searchKeyword = input;
           this.selectLoading$.next(true);
+          this.keyWordChanged();
         }),
         switchMap((input) =>
           this.booksService.searchBooks(
@@ -85,6 +88,7 @@ export class ReviewComponent implements OnInit {
         this.items = [...this.items, ...response.items];
         this.selectLoading$.next(false);
       });
+    this.cdr.markForCheck();
   }
 
   scrollEnd() {
@@ -114,5 +118,20 @@ export class ReviewComponent implements OnInit {
 
     const data: Book = { ...this.form.value, ...this.selectedBook };
     this.booksService.addBook(data);
+  }
+
+  keyWordChanged() {
+    let clonedKeywords: string[] = [...this.lastSearchedKeywords];
+
+    if (clonedKeywords.length === 3) {
+      clonedKeywords.pop();
+    }
+    clonedKeywords.unshift(this.searchKeyword);
+
+    this.lastSearchedKeywords = clonedKeywords;
+
+    // console.log(clonedKeywords);
+    localStorage.setItem('searchedKeywords', JSON.stringify(clonedKeywords));
+    this.cdr.markForCheck();
   }
 }

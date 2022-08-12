@@ -1,0 +1,13 @@
+<ng-container *ngIf="book">
+  {{ book.title }}
+  {{ book.description }}
+  {{ book.rate }}
+  {{ book.thumbnail }}
+
+  <br />
+  <button (click)="delete()">Delete</button>
+</ng-container>
+
+<ng-container *ngIf="loading$ | async"> "Loading" </ng-container>
+
+<ng-container *ngIf="!(loading$ | async) && !book"> "Not Found" </ng-container>

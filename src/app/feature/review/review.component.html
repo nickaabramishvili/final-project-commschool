@@ -1,5 +1,7 @@
 <div class="container">
   <ng-container *ngIf="saved$ | async"> Saved </ng-container>
+
+  <div class="h5 py-3">Search For Any Books By Name</div>
   <div
     class="container d-flex justify-content-between py-3"
     style="width: 400px"
@@ -17,6 +19,10 @@
       bindLabel="title"
     >
     </ng-select>
+
+    <ng-container *ngFor="let keyword of lastSearchedKeywords">
+      {{ keyword }}
+    </ng-container>
   </div>
 
   <form [formGroup]="form" (ngSubmit)="submit()">

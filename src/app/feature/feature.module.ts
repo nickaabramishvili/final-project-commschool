@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DetailsComponent } from './details/details.component';
 import { ReviewComponent } from './review/review.component';
 import { ListComponent } from './list/list.component';
 import { FeatureComponent } from './feature.component';
@@ -13,7 +13,7 @@ import { ScrollListenerDirective } from '../shared/directives/scroll-listener.di
 
 @NgModule({
   declarations: [
-    DashboardComponent,
+    DetailsComponent,
     ReviewComponent,
     ListComponent,
     FeatureComponent,

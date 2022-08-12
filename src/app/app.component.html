@@ -27,13 +27,13 @@
                 <a routerLink="auth/sign-up" class="nav-link">Sign-up</a>
               </li>
               <li routerLinkActive="active" *ngIf="this.authService.isLoggedIn">
-                <a routerLink="feature/dashboard" class="nav-link">Dashboard</a>
-              </li>
-              <li routerLinkActive="active" *ngIf="this.authService.isLoggedIn">
-                <a routerLink="feature/add" class="nav-link">Review & Rate</a>
-              </li>
-              <li routerLinkActive="active" *ngIf="this.authService.isLoggedIn">
                 <a routerLink="feature/list" class="nav-link">Your List</a>
+              </li>
+              <li routerLinkActive="active" *ngIf="this.authService.isLoggedIn">
+                <a routerLink="feature/add" class="nav-link">Add & Review</a>
+              </li>
+              <li routerLinkActive="active" *ngIf="this.authService.isLoggedIn">
+                <a routerLink="feature/details" class="nav-link">Details</a>
               </li>
             </ul>
           </nav>

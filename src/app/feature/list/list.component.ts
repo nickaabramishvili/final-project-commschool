@@ -6,7 +6,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Subscription } from 'rxjs';
+import { Subscription, map } from 'rxjs';
 import { Book } from 'src/app/shared/models/book';
 import { BooksService } from '../../shared/services/books.service';
 
@@ -45,7 +45,15 @@ export class ListComponent implements OnInit {
     this.subscription.add(
       this.booksService
         .getBooksList(this.pageInformation.key)
-        .valueChanges()
+        .snapshotChanges()
+        .pipe(
+          map((changes: any) =>
+            changes.map((c: any) => ({
+              key: c.payload.key,
+              ...c.payload.val(),
+            }))
+          )
+        )
         .subscribe((data) => {
           if (!data.length) {
             this.pageInformation.lastPage = true;

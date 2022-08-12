@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SignInComponent } from './auth/sign-in/sign-in.component';
 
-import { DashboardComponent } from './feature/dashboard/dashboard.component';
+import { DetailsComponent } from './feature/details/details.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 

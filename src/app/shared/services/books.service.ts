@@ -4,6 +4,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {
   AngularFireDatabase,
   AngularFireList,
+  AngularFireObject,
 } from '@angular/fire/compat/database';
 import { query, startAfter, remove } from '@angular/fire/database';
 import { map, Observable } from 'rxjs';
@@ -15,6 +16,7 @@ import { Book } from '../models/book';
 })
 export class BooksService {
   itemsRef: AngularFireList<Book> | undefined;
+  itemRef: AngularFireObject<any> | undefined;
   userId: string | undefined;
   databasePath: string | undefined;
 
@@ -57,33 +59,18 @@ export class BooksService {
   }
 
   addBook(book: Book) {
-    console.log('dddd');
     if (!this.itemsRef) return;
     this.itemsRef.push({ ...book });
   }
 
-  getBook(id: string) {
-    // if(!this.databasePath) return;
-    // this.itemRef = this.db.object(`${this.databasePath}/id`);
-    // return this.itemRef;
+  getBook(id: string): AngularFireObject<Book> {
+    this.itemRef = this.db.object(`${this.databasePath}/${id}`);
+    return this.itemRef;
   }
 
-  async deleteBook(id: any) {
-    if (!this.databasePath) return;
-    // this.itemsRef.
-    // // console.log(`${this.databasePath}/id`);
-    // // const t = query(startAfter(10)).ref
-    // // this.itemsRef?.remove(t)
-    // // return new Promise(async (resolve, reject) => {
-    // //   const itemRef = this.db.object(`${this.databasePath}`);
-    // //   try {
-    // //     const d = await itemRef.remove()
-    // //     console.log(d,'====delete');
-    // //     resolve({});
-    // //   } catch (e) {
-    // //     reject(e);
-    // //   }
-    // // });
+  async deleteBook() {
+    if (!this.itemRef) return;
+    return this.itemRef.remove();
   }
 
   getBooksList(startKey = ''): AngularFireList<Book> {
@@ -91,22 +78,4 @@ export class BooksService {
       ref.orderByChild('id').startAfter(startKey).limitToFirst(20)
     );
   }
-
-  //
-  // //
-  // getAll(): AngularFirestoreCollection<any> {
-  //   return this.booksRef!;
-  // }
-  //
-  // create(item: any): any {
-  //   return this.booksRef.add({...item});
-  // }
-  //
-  // update(id: string, data: any): Promise<void> {
-  //   return this.booksRef.doc(id).update(data);
-  // }
-  //
-  // delete(id: string): Promise<void> {
-  //   return this.booksRef.doc(id).delete();
-  // }
 }
