@@ -5,7 +5,7 @@
         <div class="col-2">
           <div class="site-logo">
             <a routerLink="" class="font-weight-bold h5 text-decoration-none">{{
-              title | translate
+              "project_name" | translate
             }}</a>
           </div>
         </div>
@@ -17,14 +17,18 @@
                 [routerLinkActiveOptions]="{ exact: true }"
                 *ngIf="!this.authService.isLoggedIn"
               >
-                <a routerLink="auth/sign-in" class="nav-link">login </a>
+                <a routerLink="auth/sign-in" class="nav-link"
+                  >{{ "login" | translate }}
+                </a>
               </li>
               <li
                 routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }"
                 *ngIf="!this.authService.isLoggedIn"
               >
-                <a routerLink="auth/sign-up" class="nav-link">Sign-up</a>
+                <a routerLink="auth/sign-up" class="nav-link">{{
+                  "Sign-up" | translate
+                }}</a>
               </li>
               <li routerLinkActive="active" *ngIf="this.authService.isLoggedIn">
                 <a routerLink="feature/list" class="nav-link">Your List</a>
@@ -34,7 +38,7 @@
         </div>
         <div class="col-3 d-flex justify-content-between">
           <button class="btn btn-primary ml-auto" (click)="onChangeLanguage()">
-            change language
+            {{ "Change language" | translate }}
           </button>
 
           <button
@@ -42,7 +46,7 @@
             class="btn btn-primary"
             (click)="authService.signOut()"
           >
-            Sign Out
+            {{ "Sign Out" | translate }}
           </button>
         </div>
       </div>
