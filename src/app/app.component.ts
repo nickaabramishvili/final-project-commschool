@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from './shared/services/auth.service';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,7 +10,8 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent {
   constructor(
     public authService: AuthService,
-    private translateServ: TranslateService
+    private translateServ: TranslateService,
+    private router: Router
   ) {
     translateServ.setDefaultLang('en');
     translateServ.use('en');

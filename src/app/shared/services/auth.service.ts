@@ -30,7 +30,7 @@ export class AuthService {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['feature']);
         this.setUserData(result.user);
       })
       .catch((error) => {
@@ -79,7 +79,7 @@ export class AuthService {
   googleAuth() {
     return this.authLogin(new auth.GoogleAuthProvider()).then((res: any) => {
       if (res) {
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['feature']);
       }
     });
   }
@@ -88,7 +88,7 @@ export class AuthService {
     return this.afAuth
       .signInWithPopup(provider)
       .then((result) => {
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['feature']);
         this.setUserData(result.user);
       })
       .catch((error) => {
@@ -114,7 +114,7 @@ export class AuthService {
   signOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
-      this.router.navigate(['sign-in']);
+      this.router.navigate(['auth', 'sign-in']);
     });
   }
 }
