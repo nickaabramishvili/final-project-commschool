@@ -1,6 +1,4 @@
-<div class="container">
-  <ng-container *ngIf="saved$ | async"> Saved </ng-container>
-
+<div class="container" *ngIf="!(loading$ | async)">
   <div class="h5 py-3">Search For Any Books By Name</div>
   <div
     class="container d-flex justify-content-between py-3"
@@ -19,80 +17,88 @@
       bindLabel="title"
     >
     </ng-select>
-
-    <ng-container *ngFor="let keyword of lastSearchedKeywords">
-      {{ keyword }}
-    </ng-container>
   </div>
+  <ul class="list-group list-group-flush mx-auto" style="width: 400px">
+    <li
+      class="list-group-item"
+      *ngFor="let keyword of lastSearchedKeywords; let i = index"
+    >
+      {{ i + 1 }} {{ keyword }}
+    </li>
+  </ul>
 
+  <img
+    [src]="selectedBook?.thumbnail"
+    class="rounded mx-auto d-block"
+    width="200px"
+  />
   <form [formGroup]="form" (ngSubmit)="submit()">
-    <img [src]="selectedBook?.thumbnail" />
-
     <div class="form-floating mb-3">
       <input
         type="text"
         class="form-control"
-        id="userPassword"
+        id="name"
         [value]="selectedBook?.title"
         disabled
-        placeholder="text"
+        placeholder="name"
       />
-      <label for="userPassword">text</label>
+      <label for="name">Book's Name</label>
     </div>
     <div class="form-floating mb-3">
       <input
         type="text"
         class="form-control"
-        id="userPassword"
+        id="author"
         [value]="selectedBook?.authors | arrayToString"
         disabled
-        placeholder="text"
+        placeholder="author"
       />
-      <label for="userPassword">text</label>
+      <label for="author">Book's Author</label>
     </div>
     <div class="form-floating mb-3">
       <input
         type="text"
         class="form-control"
-        id="userPassword"
+        id="desc"
         [value]="selectedBook?.description"
         disabled
-        placeholder="text"
+        placeholder="desc"
       />
-      <label for="userPassword">text</label>
+      <label for="desc">Book's Description</label>
     </div>
     <div class="form-floating mb-3">
       <input
         type="text"
         class="form-control"
         disabled
-        id="userPassword"
+        id="year"
         [value]="selectedBook?.publishedDate"
-        placeholder="text"
+        placeholder="year"
       />
-      <label for="userPassword">text</label>
+      <label for="year">Book's Release year</label>
     </div>
 
     <div class="form-floating mb-3">
       <input
         type="number"
         class="form-control"
-        id="userEmail"
-        placeholder="text"
+        id="score"
+        placeholder="score"
         formControlName="rate"
       />
-      <label for="userEmail">id</label>
+      <label for="score">Your Rate Score</label>
     </div>
     <div class="form-floating mb-3">
       <textarea
         class="form-control"
-        placeholder="Leave a comment here"
+        placeholder="comment"
         formControlName="review"
-        id="floatingTextarea2"
+        id="comment"
         style="height: 100px"
       ></textarea>
-      <label for="floatingTextarea2">Comments</label>
+      <label for="comment">Comments</label>
     </div>
+    <div *ngIf="saved$ | async" class="text-success h5">Saved</div>
 
     <button [disabled]="saved$ | async" class="btn btn-success px-3 py-2">
       Save

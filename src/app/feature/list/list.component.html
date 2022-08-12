@@ -1,6 +1,9 @@
 <div
   class="container d-flex justify-content-between py-3 flex-column align-items-center"
 >
+  <button class="btn btn-primary" [routerLink]="['../add']">
+    Create review
+  </button>
   <div class="h5" *ngIf="!userBooks">Your List Is Empty Yet!</div>
   <div class="d-flex w-100">
     <div class="row" scrollListener (scrolledToBottom)="loadMore()">
@@ -26,7 +29,4 @@
       </ng-container>
     </div>
   </div>
-  <button class="btn btn-primary p-3" [routerLink]="['../add']">
-    Go to Review & Add
-  </button>
 </div>

@@ -1,13 +1,29 @@
 <ng-container *ngIf="book">
-  {{ book.title }}
-  {{ book.description }}
-  {{ book.rate }}
-  {{ book.thumbnail }}
-
-  <br />
-  <button (click)="delete()">Delete</button>
+  <div
+    class="container d-flex flex-column align-items-center justify-content-center"
+  >
+    <img [src]="book.thumbnail" />
+  </div>
+  <div class="h5 text-center">Title : {{ book.title }}</div>
+  <div class="h5 text-center">Description : {{ book.description }}</div>
+  <div class="h5 text-center">Rate : {{ book.rate }}</div>
+  <div class="h5 text-center">Publish Date : {{ book.publishedDate }}</div>
+  <div class="h5 text-center">Review : {{ book.review }}</div>
+  <div class="w-100 d-flex justify-content-center">
+    <button (click)="delete()" class="btn btn-danger mx-auto">Delete</button>
+  </div>
 </ng-container>
 
-<ng-container *ngIf="loading$ | async"> "Loading" </ng-container>
+<ng-container
+  *ngIf="loading$ | async"
+  class="h5 text-center text-primary p-3 mx-auto"
+>
+  "Loading"
+</ng-container>
 
-<ng-container *ngIf="!(loading$ | async) && !book"> "Not Found" </ng-container>
+<ng-container
+  *ngIf="!(loading$ | async) && !book"
+  class="h5 text-center text-danger mx-auto"
+>
+  "Not Found"
+</ng-container>

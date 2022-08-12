@@ -60,6 +60,7 @@ export class BooksService {
 
   addBook(book: Book) {
     if (!this.itemsRef) return;
+    console.log('items', this.itemsRef);
     this.itemsRef.push({ ...book });
   }
 

@@ -17,7 +17,7 @@ import {
   tap,
 } from 'rxjs';
 import { Book } from 'src/app/shared/models/book';
-import { appCheckInstanceFactory } from '@angular/fire/app-check/app-check.module';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-review',
@@ -34,6 +34,7 @@ export class ReviewComponent implements OnInit {
   );
 
   saved$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   selectPageInformation = {
     startIndex: 0,
     totalItems: 0,
@@ -49,11 +50,18 @@ export class ReviewComponent implements OnInit {
 
   constructor(
     private cdr: ChangeDetectorRef,
+    private afAuth: AngularFireAuth,
     private booksService: BooksService,
     private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
+    this.afAuth.authState.subscribe((user) => {
+      if (user) {
+        this.loading$.next(false);
+      }
+    });
+
     const savedKeywords = localStorage.getItem('searchedKeywords') || '[]';
     this.lastSearchedKeywords = JSON.parse(savedKeywords);
     this.booksService.itemsRef?.stateChanges().subscribe((change) => {
