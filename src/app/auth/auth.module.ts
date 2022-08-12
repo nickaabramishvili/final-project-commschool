@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { routes } from './auth.routing.module';
 import { AuthComponent } from './auth.component';
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   declarations: [
     SignInComponent,
@@ -19,6 +20,7 @@ import { AuthComponent } from './auth.component';
     RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
+    TranslateModule,
   ],
 })
 export class AuthModule {}
